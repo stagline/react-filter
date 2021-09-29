@@ -1,5 +1,4 @@
 import "./App.css";
-import BasicFiltering from "./Table";
 
 function App() {
   let mainArray = [
@@ -53,19 +52,19 @@ function App() {
           </div>
           <>
             <div>
-              Category :{u.category} <input type="checkbox"></input>{" "}
+              Category :{u.category} <input type="checkbox"></input>
             </div>
             <br></br>
           </>
           <>
             <div>
-              Type :{u.type} <input type="checkbox"></input>{" "}
+              Type :{u.type} <input type="checkbox"></input>
             </div>
             <br></br>
           </>
           <>
             <div>
-              Active :{u.active} <input type="checkbox"></input>{" "}
+              Active :{u.active} <input type="checkbox"></input>
             </div>
             <br></br>
           </>
