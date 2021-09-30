@@ -60,6 +60,13 @@ function App() {
 
   console.log(unique);
 
+  const key = 'category';
+
+  const arrayUniqueByKey = [...new Map(mainArray.map(item =>
+    [item[key], item])).values()];
+  
+  console.log(arrayUniqueByKey);
+
   return (
     <div className="App">
       {arrData.map((y) => {
