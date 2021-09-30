@@ -1,4 +1,6 @@
+import { useState } from "react";
 import "./App.css";
+import Table from "./Table";
 
 function App() {
   let mainArray = [
@@ -40,64 +42,61 @@ function App() {
     },
   ];
 
+  let a = Object.keys(mainArray[0]);
+
+  let arrData = a.filter(function (e) {
+    return e !== "id";
+  });
+  arrData = arrData.filter(function (e) {
+    return e !== "name";
+  });
+  console.log(arrData);
+
+  const headers = Object.keys(mainArray[0]).map((header) => (
+    <thead>{header}</thead>
+  ));
+
+  const unique = [...new Set(mainArray.map((item) => item.city))];
+
+  console.log(unique);
+
   return (
     <div className="App">
-      {mainArray.map((u, key) => (
-        <>
-          <div>
-            <div>
-              City : {u.city} <input type="checkbox"></input>
-            </div>
-            <br></br>
-          </div>
-          <>
-            <div>
-              Category :{u.category} <input type="checkbox"></input>
-            </div>
-            <br></br>
-          </>
-          <>
-            <div>
-              Type :{u.type} <input type="checkbox"></input>
-            </div>
-            <br></br>
-          </>
-          <>
-            <div>
-              Active :{u.active} <input type="checkbox"></input>
-            </div>
-            <br></br>
-          </>
-        </>
-      ))}
+      {arrData.map((y) => {
+        return (
+          <table align="center">
+            <thead>
+              <tr>{y.toUpperCase()} :</tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        );
+      })}
       Name : <input type="text" name="" />
       <br></br>
-      <table>
+      <table border="5px" align="center">
         <thead>
-          <td>ID</td>
-          <td>Name</td>
-          <td>City</td>
-          <td>Category</td>
-          <td>Type</td>
-          <td>Status</td>
+          <tr>
+            {headers.map((value, index) => {
+              return (
+                <>
+                  <th key={index}>{value}</th>
+                </>
+              );
+            })}
+          </tr>
         </thead>
         <tbody>
-          {mainArray.map((item, i) => {
-            return (
-              <>
-                <tr key={i}>
-                  <td>{item.id}</td>
-                  <td>{item.name}</td>
-                  <td>{item.city}</td>
-                  <td>{item.category}</td>
-                  <td>{item.type}</td>
-                  <td>{item.active}</td>
-                </tr>
-              </>
-            );
-          })}
+          {mainArray.map((row) => (
+            <tr>
+              {Object.values(row).map((rowValue) => (
+                <td>{rowValue}</td>
+              ))}
+            </tr>
+          ))}
         </tbody>
       </table>
+      {/* <Table /> */}
     </div>
   );
 }
