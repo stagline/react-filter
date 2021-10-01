@@ -11,22 +11,13 @@ const Dynamic = () => {
   });
   const maicolumns = [
     { path: "id", name: "ID" },
+    { path: "name", name: "Name" },
     { path: "city", name: "City" },
     { path: "category", name: "Category" },
     { path: "type", name: "Type" },
     { path: "active", name: "Active" },
     // { path: "state", name: "State" },
   ];
-
-  let a = Object.keys(maicolumns[0]);
-
-  let arrData = a.filter(function (e) {
-    return e !== "id";
-  });
-  arrData = arrData.filter(function (e) {
-    return e !== "name";
-  });
-  console.log(arrData, "arrData");
 
   const maidata = [
     {
@@ -205,6 +196,15 @@ const Dynamic = () => {
           {c}
         </>
       ))}
+      <br />
+      <br />
+      Name :
+      <input
+        type="text"
+        onChange={(e) =>
+          setFilterState({ ...filterState, name: e.target.value })
+        }
+      />
       <table style={tableStyle}>
         <tbody>
           <tr>
