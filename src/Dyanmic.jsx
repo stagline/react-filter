@@ -9,6 +9,7 @@ const Dynamic = () => {
     type: [],
     active: [],
   });
+
   const maicolumns = [
     { path: "id", name: "ID" },
     { path: "name", name: "Name" },
@@ -16,7 +17,6 @@ const Dynamic = () => {
     { path: "category", name: "Category" },
     { path: "type", name: "Type" },
     { path: "active", name: "Active" },
-    // { path: "state", name: "State" },
   ];
 
   const maidata = [
@@ -27,7 +27,6 @@ const Dynamic = () => {
       category: "one",
       type: "A",
       active: "FALSE",
-      //   state: "Gujrat",
     },
     {
       id: 2,
@@ -36,7 +35,6 @@ const Dynamic = () => {
       category: "one",
       type: "B",
       active: "FALSE",
-      //   state: "MH",
     },
     {
       id: 3,
@@ -45,7 +43,6 @@ const Dynamic = () => {
       category: "one",
       type: "B",
       active: "TRUE",
-      //   state: "RJ",
     },
     {
       id: 4,
@@ -54,7 +51,6 @@ const Dynamic = () => {
       category: "two",
       type: "C",
       active: "FALSE",
-      //   state: "UP",
     },
   ];
 
@@ -146,7 +142,6 @@ const Dynamic = () => {
   const cat = [...new Set(maidata.reduce((a, c) => [...a, c.category], []))];
   const type = [...new Set(maidata.reduce((a, c) => [...a, c.type], []))];
   const active = [...new Set(maidata.reduce((a, c) => [...a, c.active], []))];
-
   return (
     <div>
       City :{" "}
@@ -252,3 +247,6 @@ const tableStyle = {
 const tdStyle = {
   border: "1px solid black",
 };
+
+
+// https://www.google.com/search?q=multiple+filter+in+javascript+github&oq=multiple+filter+in+javascript+github&aqs=chrome..69i57.9544j0j7&sourceid=chrome&ie=UTF-8

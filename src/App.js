@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Dynamic from "./Dyanmic";
-import TableTwo from "./TableTwo";
+import New from "./New";
 function App() {
   let mainArray = [
     {
@@ -108,8 +108,8 @@ function App() {
           ))}
         </tbody>
       </table> */}
-      {/* <TableTwo /> */}
       <Dynamic />
+      {/* <New /> */}
     </div>
   );
 }
