@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import Table from "./Table";
-
+import Dynamic from "./Dyanmic";
+import TableTwo from "./TableTwo";
 function App() {
   let mainArray = [
     {
@@ -56,20 +56,25 @@ function App() {
     <thead>{header}</thead>
   ));
 
-  const unique = [...new Set(mainArray.map((item) => item.city))];
+  const city = [...new Set(mainArray.reduce((a, c) => [...a, c.city], []))];
+  const cat = [...new Set(mainArray.reduce((a, c) => [...a, c.category], []))];
+  const type = [...new Set(mainArray.reduce((a, c) => [...a, c.type], []))];
+  const active = [...new Set(mainArray.reduce((a, c) => [...a, c.active], []))];
 
-  console.log(unique);
-
-  const key = 'category';
-
-  const arrayUniqueByKey = [...new Map(mainArray.map(item =>
-    [item[key], item])).values()];
-  
-  console.log(arrayUniqueByKey);
+  console.log(city);
+  console.log(cat);
 
   return (
     <div className="App">
-      {arrData.map((y) => {
+      {/* City : {city.map((c) => c)}
+      <br></br>
+      Cat : {cat.map((c) => c)}
+      <br></br>
+      type : {type.map((c) => c)}
+      <br></br>
+      active : {active.map((c) => c)}
+      <br></br> */}
+      {/* {arrData.map((y) => {
         return (
           <table align="center">
             <thead>
@@ -78,8 +83,8 @@ function App() {
             <tbody></tbody>
           </table>
         );
-      })}
-      Name : <input type="text" name="" />
+      })} */}
+      {/* Name : <input type="text" name="" />
       <br></br>
       <table border="5px" align="center">
         <thead>
@@ -102,8 +107,9 @@ function App() {
             </tr>
           ))}
         </tbody>
-      </table>
-      {/* <Table /> */}
+      </table> */}
+      <TableTwo />
+      {/* <Dynamic /> */}
     </div>
   );
 }
