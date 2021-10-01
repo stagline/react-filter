@@ -108,8 +108,8 @@ function App() {
           ))}
         </tbody>
       </table> */}
-      <TableTwo />
-      {/* <Dynamic /> */}
+      {/* <TableTwo /> */}
+      <Dynamic />
     </div>
   );
 }
