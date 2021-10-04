@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import Dynamic from "./Dyanmic";
 import New from "./New";
+import NewDynamic from "./NewDynamic";
+import Demo from "./Demo";
 function App() {
   let mainArray = [
     {
@@ -108,8 +110,10 @@ function App() {
           ))}
         </tbody>
       </table> */}
-      <Dynamic />
+      {/* <Dynamic /> */}
       {/* <New /> */}
+      <NewDynamic />
+      {/* <Demo /> */}
     </div>
   );
 }

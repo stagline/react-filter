@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function New() {
   let mainArray = [
@@ -9,7 +9,6 @@ function New() {
       category: "one",
       type: "A",
       active: "FALSE",
-    //   state: "guj",
     },
     {
       id: 2,
@@ -18,7 +17,6 @@ function New() {
       category: "one",
       type: "B",
       active: "FALSE",
-    //   state: "guj",
     },
     {
       id: 3,
@@ -27,7 +25,6 @@ function New() {
       category: "one",
       type: "B",
       active: "TRUE",
-    //   state: "raj",
     },
     {
       id: 4,
@@ -36,45 +33,48 @@ function New() {
       category: "two",
       type: "C",
       active: "FALSE",
-    //   state: "mah",
     },
   ];
 
-  const head = Object.keys(mainArray[0]);
-  console.log(`head`, head);
+  const heading = Object.keys(mainArray[0]);
+  console.log("heading", heading);
 
-  let filteredAry = head.filter(function (e) {
-    return e !== "id";
+  let filteredAry = heading.filter(function (e) {
+    return e !== "id" && e !== "name";
   });
-  filteredAry = filteredAry.filter(function (e) {
-    return e !== "name";
-  });
+  console.log("filteredAry", filteredAry);
 
-  const mai = filteredAry.map((v, index) => {
+  let mai = filteredAry.map((v, index) => {
     return mainArray.map((value, i) => {
       return mainArray[i][v];
     });
   });
+  console.log("mai", mai);
 
-  const unique = (v, i, s) => {
-    return s.indexOf(v) === i;
+  const distinctValues = (currentElement, index, array) => {
+    return array.indexOf(currentElement) === index;
   };
-
-  const distinctArrayValue = mai.map((v, i) => {
-    return v.filter(unique);
+  function callback(currentElement, index, array) {
+    // ...
+  }
+  const distintArrayValues = mai.map((currentElement, index) => {
+    return currentElement.filter(distinctValues);
   });
+  console.log("distintArrayValues", distintArrayValues);
 
-  let myObj = {};
+  let obj = {};
   let data = {};
   for (let i = 0; i < filteredAry.length; i++) {
-    myObj[filteredAry[i]] = [];
+    obj[filteredAry[i]] = [];
     data[filteredAry[i]] = [];
-    myObj[filteredAry[i]].push(distinctArrayValue[i]);
+    obj[filteredAry[i]].push(distintArrayValues[i]);
   }
 
-  const [myData, setMyData] = useState(data);
+  console.log(obj, "obj");
+  console.log(data, "data");
 
   const [filteredData, setFilteredData] = useState(mainArray);
+  const [myData, setMyData] = useState(data);
 
   const handleChange = (e) => {
     const { value, name, checked } = e.target;
@@ -93,106 +93,7 @@ function New() {
     }
   };
 
-  useEffect(() => {
-    setFilteredData(multiFilter(mainArray, myData));
-  }, [myData]);
-
-  function multiFilter(array, filters) {
-    const filterKeys = Object.keys(filters);
-
-    return array.filter((item) => {
-      return filterKeys.every((key) => {
-        if (key === "name")
-          return (
-            item.name.toLowerCase().indexOf(filters[key].toLowerCase()) !== -1
-          );
-        if (!filters[key].length) return true;
-        return filters[key].includes(item[key]);
-      });
-    });
-  }
-
-  return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            {filteredAry.map((value, index) => {
-              return (
-                <>
-                  <th key={index}>{value}</th>
-                </>
-              );
-            })}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            {Object.values(myObj).map((value, index) => {
-              return (
-                <>
-                  {value.map((v, i) => {
-                    return (
-                      <td>
-                        {v.map((val, ind) => {
-                          return (
-                            <tr>
-                              {val}
-                              <label className="switch">
-                                <input
-                                  type="checkbox"
-                                  name={filteredAry[index]}
-                                  value={val}
-                                  onChange={handleChange}
-                                />
-                                <span className="slider round"></span>
-                              </label>
-                            </tr>
-                          );
-                        })}
-                      </td>
-                    );
-                  })}
-                </>
-              );
-            })}
-          </tr>
-        </tbody>
-      </table>
-      <br />
-      <label>Name</label>
-      <input type="text" name="name" onChange={handleChange} />
-
-      <CustomTable filteredData={filteredData} head={head} />
-    </div>
-  );
+  return <div></div>;
 }
 
 export default New;
-
-const CustomTable = ({ filteredData, head }) => {
-  const objectValues = (newArray) => Object.values(newArray);
-
-  return (
-    <table border="1px" align="center">
-      <thead>
-        <tr>
-          {head.map((value) => (
-            <th key={value}>{value}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {filteredData.map((v, index) => {
-          return (
-            <tr key={index}>
-              {objectValues(v).map((values, i) => {
-                return <td key={i}>{values}</td>;
-              })}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  );
-};

@@ -142,6 +142,7 @@ const Dynamic = () => {
   const cat = [...new Set(maidata.reduce((a, c) => [...a, c.category], []))];
   const type = [...new Set(maidata.reduce((a, c) => [...a, c.type], []))];
   const active = [...new Set(maidata.reduce((a, c) => [...a, c.active], []))];
+
   return (
     <div>
       City :{" "}
@@ -247,6 +248,5 @@ const tableStyle = {
 const tdStyle = {
   border: "1px solid black",
 };
-
 
 // https://www.google.com/search?q=multiple+filter+in+javascript+github&oq=multiple+filter+in+javascript+github&aqs=chrome..69i57.9544j0j7&sourceid=chrome&ie=UTF-8
